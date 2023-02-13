@@ -1,0 +1,23 @@
+/* Colors */
+:root {
+  --color-yellow: #fbd914;
+  --color-blue: #0058a3;
+  --color-light-gray: #e2e1e2;
+  --color-dark-gray: #a9a9a8;
+  --color-red: #a34448;
+  --color-black: #000000;
+}
+
+/* Space */
+:root {
+  --space-small: 8px;
+  --space-medium: 16px;
+  --space-large: 24px;
+  --space-x-large: 32px;
+}
+
+/* Other */
+:root {
+  --border-radius: 8px;
+  --transition: 0.3s ease-in-out;
+}

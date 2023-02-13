@@ -1,0 +1,18 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Croissant+One&display=swap");
+
+html {
+  font-family: "Croissant One", cursive;
+  font-size: 14px;
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+}
