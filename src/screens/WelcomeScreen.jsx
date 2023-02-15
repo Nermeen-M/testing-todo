@@ -18,7 +18,9 @@ export default function WelcomeScreen({ setModal }) {
         the name and the price of the item you want to add. You can also and an
         image after the item is added by touching the camera icon.
       </p>
-      <button onClick={() => setModal(<p>Hello</p>)}>Add a new item</button>
+      <button className="primary-button" onClick={() => setModal(<p>Hello</p>)}>
+        Add a new item
+      </button>
     </div>
   );
 }
