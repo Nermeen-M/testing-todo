@@ -69,11 +69,11 @@ export default function AddItemForm({ setModal }) {
         />
         {!priceIsValid && <p className="error">Please enter a valid price.</p>}
       </div>
-      <div className="form-actions">
-        <button className="btn primary-btn" type="submit">
+      <div className="actions">
+        <button className="primary-button" type="submit">
           Add
         </button>
-        <button className="btn secondary-btn" onClick={() => setModal(null)}>
+        <button className="secondary-button" onClick={() => setModal(null)}>
           Cancel
         </button>
       </div>

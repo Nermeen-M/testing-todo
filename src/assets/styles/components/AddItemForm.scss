@@ -1,0 +1,42 @@
+.form {
+  padding: $space-medium;
+  width: 327px;
+
+  &-field {
+    margin-bottom: $space-large;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 4px;
+    }
+
+    input {
+      height: 44px;
+      padding: 0.8rem;
+      border: 0;
+      background-color: $color-light-gray;
+      border-radius: $border-radius;
+
+      &::placeholder {
+        color: $color-dark-gray;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+    .error {
+      color: $color-red;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-medium;
+  }
+}

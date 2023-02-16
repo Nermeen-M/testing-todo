@@ -44,6 +44,7 @@ header {
   font-size: 14px;
   font-weight: bold;
   transition: $transition;
+  background-color: none;
 
   &:hover {
     text-decoration: underline;
