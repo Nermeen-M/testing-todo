@@ -1,3 +1,4 @@
+import AddItemForm from "../components/AddItemForm";
 import Image from "../assets/images/shopping image.png";
 
 export default function WelcomeScreen({ setModal }) {
@@ -18,7 +19,10 @@ export default function WelcomeScreen({ setModal }) {
         the name and the price of the item you want to add. You can also and an
         image after the item is added by touching the camera icon.
       </p>
-      <button className="primary-button" onClick={() => setModal(<p>Hello</p>)}>
+      <button
+        className="primary-button"
+        onClick={() => setModal(<AddItemForm setModal={setModal} />)}
+      >
         Add a new item
       </button>
     </div>
