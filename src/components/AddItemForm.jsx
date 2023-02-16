@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { validateName, validatePrice } from "../scripts/validateInputs";
 
 export default function AddItemForm({ setModal }) {
   const [name, setName] = useState("");
@@ -8,30 +9,33 @@ export default function AddItemForm({ setModal }) {
 
   function nameChangeHandler(event) {
     setName(event.target.value);
-    if (name.trim().length === 0) {
-      setNameIsValid(false);
-    }
-    setNameIsValid(true);
+
+    const isValid = validateName(event.target.value);
+
+    setNameIsValid(isValid);
   }
 
   function priceChangeHandler(event) {
     setPrice(event.target.value);
-    if (price.trim().length === 0 || price < 1) {
-      setPriceIsValid(false);
-    }
-    setPriceIsValid(true);
+
+    const isValid = validatePrice(event.target.value);
+
+    setPriceIsValid(isValid);
   }
 
   function submitHandler(event) {
     event.preventDefault();
-    if (name.trim().length === 0) {
+
+    if (!validateName(name)) {
       setNameIsValid(false);
       return;
     }
-    if (price.trim().length === 0 || price < 1) {
+
+    if (!validatePrice(price)) {
       setPriceIsValid(false);
       return;
     }
+
     setNameIsValid(true);
     setPriceIsValid(true);
 
@@ -71,7 +75,7 @@ export default function AddItemForm({ setModal }) {
       </div>
       <div className="actions">
         <button className="primary-button" type="submit">
-          Add
+          Submit
         </button>
         <button className="secondary-button" onClick={() => setModal(null)}>
           Cancel
