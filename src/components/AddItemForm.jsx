@@ -50,6 +50,7 @@ export default function AddItemForm({ setModal }) {
 
   return (
     <form className="form" onSubmit={submitHandler}>
+      <h2>Create new item</h2>
       <div className="form-field">
         <label htmlFor="name">Item name</label>
         <input
