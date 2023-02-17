@@ -9,9 +9,9 @@ import { useItems } from "../state/ItemsContext";
 export default function ShoppingScreen({ setModal }) {
   const { items, setItems } = useItems();
 
-  const [showAdquired, setShowAdquired] = useState(false);
+  const [showCompleted, setShowCompleted] = useState(false);
 
-  const adquiredItems = items.filter((item) => item.isCompleted === true);
+  const completedItems = items.filter((item) => item.isCompleted === true);
   const pendingItems = items.filter((item) => item.isCompleted === false);
 
   function onCheck(id) {
@@ -24,21 +24,24 @@ export default function ShoppingScreen({ setModal }) {
 
   return (
     <div id="shopping-screen">
-      <h1>Shopping Screen</h1>
+      <h1>Shopping list</h1>
       <Sorter />
       <TodoList items={pendingItems} onCheck={onCheck} />
       <div className="buttons">
-        <button onClick={() => setModal(<AddItemForm setModal={setModal} />)}>
-          Add a new item
+        <button
+          className="primary-button"
+          onClick={() => setModal(<AddItemForm setModal={setModal} />)}
+        >
+          Add item
         </button>
         <button
-          className="secondary"
-          onClick={() => setShowAdquired(!showAdquired)}
+          className="secondary-button"
+          onClick={() => setShowCompleted(!showCompleted)}
         >
-          Show hidden items
+          {showCompleted ? "Hide completed items" : "View completed items"}
         </button>
       </div>
-      {showAdquired && <TodoList items={adquiredItems} onCheck={onCheck} />}
+      {showCompleted && <TodoList items={completedItems} onCheck={onCheck} />}
     </div>
   );
 }
