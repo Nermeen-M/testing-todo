@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import App from "./App";
+import { ItemsProvider } from "./state/ItemsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <ItemsProvider>
+      <App />
+    </ItemsProvider>
   </React.StrictMode>
 );

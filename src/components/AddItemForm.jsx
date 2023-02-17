@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useItems } from "../state/ItemsContext";
 import { validateName, validatePrice } from "../scripts/validateInputs";
 import useInput from "../scripts/hooks/useInput";
 
 export default function AddItemForm({ setModal }) {
+  const { items, setItems } = useItems();
+
   const {
     value: nameValue,
     valueIsValid: nameIsValid,
@@ -28,24 +30,27 @@ export default function AddItemForm({ setModal }) {
   }
 
   function submitHandler(event) {
+    const newItem = {
+      id: items.length,
+      name: nameValue,
+      price: priceValue,
+      isCompleted: false,
+    };
+
     event.preventDefault();
 
     if (!formIsValid) {
       return;
     }
 
-    console.log("Submitted!");
-    console.log(nameValue, priceValue);
+    // console.log("Submitted!");
+    // console.log(nameValue, priceValue);
 
     nameReset();
     priceReset();
 
-    // dataCtx.onAddItem(name, price);
-    // {
-    //   props.redirect && dataCtx.navigateToShoppingList();
-    // }
-
-    // dataCtx.onCloseModal();
+    setItems([...items, newItem]);
+    setModal(null);
   }
 
   return (
