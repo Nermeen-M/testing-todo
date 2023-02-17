@@ -1,80 +1,85 @@
 import { useState } from "react";
 import { validateName, validatePrice } from "../scripts/validateInputs";
+import useInput from "../scripts/hooks/useInput";
 
 export default function AddItemForm({ setModal }) {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [nameIsValid, setNameIsValid] = useState(true);
-  const [priceIsValid, setPriceIsValid] = useState(true);
+  const {
+    value: nameValue,
+    valueIsValid: nameIsValid,
+    hasError: nameHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: nameReset,
+  } = useInput(validateName);
 
-  function nameChangeHandler(event) {
-    setName(event.target.value);
+  const {
+    value: priceValue,
+    valueIsValid: priceIsValid,
+    hasError: priceHasError,
+    valueChangeHandler: priceChangeHandler,
+    inputBlurHandler: priceBlurHandler,
+    reset: priceReset,
+  } = useInput(validatePrice);
 
-    const isValid = validateName(event.target.value);
+  let formIsValid = false;
 
-    setNameIsValid(isValid);
-  }
-
-  function priceChangeHandler(event) {
-    setPrice(event.target.value);
-
-    const isValid = validatePrice(event.target.value);
-
-    setPriceIsValid(isValid);
+  if (nameIsValid && priceIsValid) {
+    formIsValid = true;
   }
 
   function submitHandler(event) {
     event.preventDefault();
 
-    if (!validateName(name)) {
-      setNameIsValid(false);
+    if (!formIsValid) {
       return;
     }
 
-    if (!validatePrice(price)) {
-      setPriceIsValid(false);
-      return;
-    }
+    console.log("Submitted!");
+    console.log(nameValue, priceValue);
 
-    setNameIsValid(true);
-    setPriceIsValid(true);
+    nameReset();
+    priceReset();
 
     // dataCtx.onAddItem(name, price);
     // {
     //   props.redirect && dataCtx.navigateToShoppingList();
     // }
 
-    setName("");
-    setPrice("");
     // dataCtx.onCloseModal();
   }
 
   return (
     <form className="form" onSubmit={submitHandler}>
       <div className="form-field">
-        <label htmlFor="item-name">Item name</label>
+        <label htmlFor="name">Item name</label>
         <input
-          id="item-name"
+          id="name"
           type="text"
-          value={name}
+          value={nameValue}
           onChange={nameChangeHandler}
+          onBlur={nameBlurHandler}
           placeholder="Item name"
         />
-        {!nameIsValid && <p className="error">Please enter a valid name.</p>}
+        {nameHasError && <p className="error">Please enter a valid name.</p>}
       </div>
       <div className="form-field">
-        <label htmlFor="item-price">Price</label>
+        <label htmlFor="price">Price</label>
         <input
-          id="item-price"
+          id="price"
           type="number"
-          value={price}
+          value={priceValue}
           onChange={priceChangeHandler}
+          onBlur={priceBlurHandler}
           placeholder="Item price"
         />
-        {!priceIsValid && <p className="error">Please enter a valid price.</p>}
+        {priceHasError && <p className="error">Please enter a valid price.</p>}
       </div>
       <div className="actions">
-        <button className="primary-button" type="submit">
+        <button
+          className="primary-button"
+          type="submit"
+          disabled={!formIsValid}
+        >
           Submit
         </button>
         <button className="secondary-button" onClick={() => setModal(null)}>
