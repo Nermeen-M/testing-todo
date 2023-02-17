@@ -43,9 +43,6 @@ export default function AddItemForm({ setModal }) {
       return;
     }
 
-    // console.log("Submitted!");
-    // console.log(nameValue, priceValue);
-
     nameReset();
     priceReset();
 
