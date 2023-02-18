@@ -23,7 +23,7 @@ export default function WelcomeScreen({ setModal }) {
         className="primary-button"
         onClick={() => setModal(<AddItemForm setModal={setModal} />)}
       >
-        Add a new item
+        Add item
       </button>
     </div>
   );

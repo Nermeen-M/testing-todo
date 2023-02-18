@@ -61,7 +61,7 @@ export default function AddItemForm({ setModal }) {
           value={nameValue}
           onChange={nameChangeHandler}
           onBlur={nameBlurHandler}
-          placeholder="Item name"
+          placeholder="Ex: Chair"
         />
         {nameHasError && <p className="error">Please enter a valid name.</p>}
       </div>
@@ -73,7 +73,7 @@ export default function AddItemForm({ setModal }) {
           value={priceValue}
           onChange={priceChangeHandler}
           onBlur={priceBlurHandler}
-          placeholder="Item price"
+          placeholder="Ex: 50"
         />
         {priceHasError && <p className="error">Please enter a valid price.</p>}
       </div>
