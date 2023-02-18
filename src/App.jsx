@@ -11,7 +11,6 @@ import "./assets/styles/style.scss";
 
 export default function App() {
   const { items } = useItems();
-
   const [modal, setModal] = useState(null);
 
   return (

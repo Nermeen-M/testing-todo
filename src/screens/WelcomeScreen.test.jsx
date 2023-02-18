@@ -1,19 +1,23 @@
-// import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
-// import ShoppingScreen from "./ShoppingScreen";
+import WelcomeScreen from "./WelcomeScreen";
+import { ItemsProvider } from "../state/ItemsContext";
 
-// test("should render AddItemForm when click on 'Add item' button", () => {
-//   //Arrange
-//   const setModal = () => {};
-//   render(<ShoppingScreen setModal={setModal} />);
+import AddItemForm from "../components/AddItemForm";
 
-//   //Act
-//   const buttonElement = screen.getByRole("button", {
-//     name: /add item/i,
-//   });
-//   fireEvent.click(buttonElement);
+test("should open the modal when click on 'Add item' button", () => {
+  //Arrange
+  const setModal = () => {};
+  render(<WelcomeScreen setModal={setModal} />, { wrapper: ItemsProvider });
 
-//   //Assert
-//   const titleElement = screen.getByText("Create new item");
-//   expect(titleElement).toBeInTheDocument();
-// });
+  //Act
+  const buttonElement = screen.getByText("Add item");
+  fireEvent.click(buttonElement);
+
+  const { getByText } = render(<AddItemForm setModal={setModal} />, {
+    wrapper: ItemsProvider,
+  });
+
+  //Assert
+  expect(getByText("Create new item")).toBeInTheDocument();
+});
